@@ -11,6 +11,19 @@ const initialState = {
 const INCREMENT = "increment";
 const DECREMENT = "decrement";
 
+// action creators
+const increment = (value) => {
+  return {
+    type: INCREMENT,
+    playload: 5,
+  };
+};
+const decrement = (value) => {
+  return {
+    type: DECREMENT,
+    playload: 2,
+  };
+};
 //reducer
 function counterreducer(state = initialState, action) {
   if (action.type === INCREMENT) {
@@ -35,14 +48,8 @@ function render() {
 }
 store.subscribe(render);
 incrementEl.addEventListener("click", () => {
-  store.dispatch({
-    type: INCREMENT,
-    playload: 5,
-  });
+  store.dispatch(increment());
 });
 decrementEl.addEventListener("click", () => {
-  store.dispatch({
-    type: DECREMENT,
-    playload: 2,
-  });
+  store.dispatch(decrement());
 });
