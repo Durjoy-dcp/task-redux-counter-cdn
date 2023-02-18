@@ -1,3 +1,7 @@
+const counterEl = document.getElementById("counter");
+const incrementEl = document.getElementById("increment");
+const decrementEl = document.getElementById("decrement");
+
 //state
 const initialState = {
   value: 0,
@@ -19,3 +23,20 @@ function counterreducer(state = initialState, action) {
     return state;
   }
 }
+const store = Redux.createStore(counterreducer);
+render();
+function render() {
+  const state = store.getState();
+  counterEl.innerText = state.value;
+}
+store.subscribe(render);
+incrementEl.addEventListener("click", () => {
+  store.dispatch({
+    type: "increment",
+  });
+});
+decrementEl.addEventListener("click", () => {
+  store.dispatch({
+    type: "decrement",
+  });
+});
