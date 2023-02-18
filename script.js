@@ -7,17 +7,21 @@ const initialState = {
   value: 0,
 };
 
+// action identifiers
+const INCREMENT = "increment";
+const DECREMENT = "decrement";
+
 //reducer
 function counterreducer(state = initialState, action) {
-  if (action.type === "increment") {
+  if (action.type === INCREMENT) {
     return {
       ...state,
-      value: state.value + 1,
+      value: state.value + action.playload,
     };
-  } else if (action.type === "decrement") {
+  } else if (action.type === DECREMENT) {
     return {
       ...state,
-      value: state.value - 1,
+      value: state.value - action.playload,
     };
   } else {
     return state;
@@ -32,11 +36,13 @@ function render() {
 store.subscribe(render);
 incrementEl.addEventListener("click", () => {
   store.dispatch({
-    type: "increment",
+    type: INCREMENT,
+    playload: 5,
   });
 });
 decrementEl.addEventListener("click", () => {
   store.dispatch({
-    type: "decrement",
+    type: DECREMENT,
+    playload: 2,
   });
 });
